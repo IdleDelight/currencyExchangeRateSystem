@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ExchangeRateSharedLib.Models
+﻿namespace ExchangeRateSharedLib.Models
 {
     public class ExchangeRateResponse
     {
