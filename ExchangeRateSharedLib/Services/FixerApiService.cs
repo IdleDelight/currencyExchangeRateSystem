@@ -1,10 +1,10 @@
-﻿using ExchangeRateSharedLib.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using ExchangeRateSharedLib.Models;
 using ExchangeRateSharedLib.Utilities;
 
 namespace ExchangeRateSharedLib.Services
 {
-    internal class FixerApiService
+    internal class FixerApiService : IExchangeRateService
     {
         private readonly string _apiKey = Constants.FixerApiKey;
         private readonly string _baseUrl = Constants.FixerBaseUrl;
@@ -16,7 +16,7 @@ namespace ExchangeRateSharedLib.Services
             _httpClient = new HttpClient();
         }
 
-        public async Task<ExchangeRateResponse> GetLatesRatesAsync( string baseCurrency )
+        public async Task<ExchangeRateResponse> GetLatestRatesAsync( string baseCurrency )
         {
             if (string.IsNullOrEmpty(baseCurrency)) {
                 throw new ArgumentException("Base currency cannot be null or empty.", nameof(baseCurrency));
