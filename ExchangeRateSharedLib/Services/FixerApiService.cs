@@ -11,8 +11,8 @@ namespace ExchangeRateSharedLib.Services
 {
     internal class FixerApiService
     {
-        private readonly string _apiKey = Constants.FIXER_API_KEY;
-        private readonly string _baseUrl = Constants.FIXER_BASE_URL;
+        private readonly string _apiKey = Constants.FixerApiKey;
+        private readonly string _baseUrl = Constants.FixerBaseUrl;
 
         private readonly HttpClient _httpClient;
 
@@ -27,7 +27,7 @@ namespace ExchangeRateSharedLib.Services
                 throw new ArgumentException("Base currency cannot be null or empty.", nameof(baseCurrency));
             }
 
-            if (!Constants.FIXER_VALID_SYMBOLS.Contains(baseCurrency.ToUpper())) {
+            if (!Constants.FixerValidSymbols.Contains(baseCurrency.ToUpper())) {
                 throw new ArgumentException($"{baseCurrency} is not a valid currency symbol.", nameof(baseCurrency));
             }
 

@@ -8,10 +8,10 @@ namespace ExchangeRateSharedLib.Utilities
 {
     public static class Constants
     {
-        public const string FIXER_API_KEY = "3aa40bf4f72be5c8ca14a09f1fe06459";
-        public const string FIXER_BASE_URL = "http://data.fixer.io/api/";
+        public const string FixerApiKey = "3aa40bf4f72be5c8ca14a09f1fe06459";
+        public const string FixerBaseUrl = "http://data.fixer.io/api/";
 
-        public static readonly string[] FIXER_VALID_SYMBOLS = new string[]
+        public static readonly string[] FixerValidSymbols = new string[]
         {
             "EUR", "AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG",
             "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB",
