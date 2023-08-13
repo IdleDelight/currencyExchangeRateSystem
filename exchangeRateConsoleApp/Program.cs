@@ -78,7 +78,7 @@ namespace ExchangeRateConsoleApp
                 PrintSubHeader($"Using {dateInput} rates for {fromCurrency} and {toCurrency}");
                 decimal result = ConvertCurrency(fromCurrency, toCurrency, amount, rateCache[dateInput]);
                 Console.WriteLine($"{fromCurrency} {amount} is approximately {toCurrency} {result:N2}");
-                PrintFooter("Press [Q] to quit, or any other key to continue...");
+                PrintFooter("Press [Q] to quit\n...or press any other key to continue");
 
                 if (Console.ReadLine()!.ToLower() == "q") break;
             }
@@ -118,22 +118,22 @@ namespace ExchangeRateConsoleApp
 
         private static void PrintHeader( string text )
         {
-            Console.WriteLine("===================================");
-            Console.WriteLine($"   {text}");
-            Console.WriteLine("===================================");
+            Console.WriteLine("======================================");
+            Console.WriteLine($"     {text}");
+            Console.WriteLine("======================================");
         }
 
         private static void PrintSubHeader( string text )
         {
             Console.WriteLine(text);
-            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("--------------------------------------");
         }
 
         private static void PrintFooter( string text )
         {
-            Console.WriteLine("===================================");
+            Console.WriteLine("======================================");
             Console.WriteLine(text);
-            Console.WriteLine("===================================");
+            Console.WriteLine("======================================");
         }
     }
 }
