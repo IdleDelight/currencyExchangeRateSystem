@@ -5,8 +5,6 @@ namespace ExchangeRateConsoleApp
 {
     class Program
     {
-        private const string AccessKey = Constants.FixerApiKey;
-        private const string BaseApi = Constants.FixerBaseUrl;
         private static Dictionary<string, JObject> rateCache = new();
 
         private static CurrencyService currencyService = new CurrencyService();
