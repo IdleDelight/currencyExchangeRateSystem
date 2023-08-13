@@ -29,7 +29,8 @@ namespace ExchangeRateConsoleApp
                 consoleUtility.PrintHeader("The Currency Converter");
 
                 do {
-                    Console.Write("Enter the source currency code: ");
+                    Console.WriteLine("Enter the source currency code");
+                    Console.Write("(ex. EUR, USD, GBP, NOK): ");
                     fromCurrency = Console.ReadLine()!.ToUpper(CultureInfo.InvariantCulture);
 
                     if (!currencyService.IsValidCurrency(fromCurrency)) {
@@ -52,7 +53,8 @@ namespace ExchangeRateConsoleApp
                 consoleUtility.PrintHeader("The Currency Converter");
                 consoleUtility.PrintSubHeader($"{fromCurrency} {amount} to");
                 do {
-                    Console.Write("Enter the target currency code: ");
+                    Console.WriteLine("Enter the target currency code");
+                    Console.Write("(ex. EUR, USD, GBP, NOK): ");
                     toCurrency = Console.ReadLine()!.ToUpper(CultureInfo.InvariantCulture);
                     if (!currencyService.IsValidCurrency(toCurrency)) {
                         Console.WriteLine($"Invalid currency. Please enter a valid currency code.");
