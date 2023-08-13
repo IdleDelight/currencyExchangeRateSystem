@@ -4,7 +4,7 @@
     {
         public const string FixerApiKey = "3aa40bf4f72be5c8ca14a09f1fe06459";
         public const string FixerBaseUrl = "http://data.fixer.io/api/";
-
+        public const string FixerBaseCurrency = "EUR";
         public static readonly string[] FixerValidSymbols = new string[]
         {
             "EUR", "AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG",

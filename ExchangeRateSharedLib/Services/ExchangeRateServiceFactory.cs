@@ -1,10 +1,10 @@
-﻿using ExchangeRateSharedLib.Services;
-
-public static class ExchangeRateServiceFactory
+﻿namespace ExchangeRateSharedLib.Services
 {
-    public static IExchangeRateService CreateFixerService()
+    public static class ExchangeRateServiceFactory
     {
-        return new FixerApiService();
+        public static IExchangeRateService CreateFixerService()
+        {
+            return new FixerApiService();
+        }
     }
 }
-

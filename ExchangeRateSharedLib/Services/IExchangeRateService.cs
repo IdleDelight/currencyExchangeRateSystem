@@ -1,6 +1,9 @@
 ﻿using ExchangeRateSharedLib.Models;
 
-public interface IExchangeRateService
+namespace ExchangeRateSharedLib.Services
 {
-    Task<ExchangeRateResponse> GetLatestRatesAsync( string baseCurrency );
+    public interface IExchangeRateService
+    {
+        Task<ExchangeRateResponse> GetLatestRatesAsync( string baseCurrency );
+    }
 }

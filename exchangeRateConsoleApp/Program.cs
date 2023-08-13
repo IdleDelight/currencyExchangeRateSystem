@@ -13,7 +13,7 @@ namespace ExchangeRateConsoleApp
             Console.WriteLine("-------------------------");
 
             Console.Write("Enter a valid base currency (ex. EUR): ");
-            string baseCurrency = Console.ReadLine()?.ToUpper();
+            string baseCurrency = Console.ReadLine()!.ToUpper();
 
             if (string.IsNullOrWhiteSpace(baseCurrency) ) {
                 Console.WriteLine("Invalid input.Exiting...");
