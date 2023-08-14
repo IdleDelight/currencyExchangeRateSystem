@@ -21,6 +21,7 @@ namespace ExchangeRateAPI.Data
                 .HasForeignKey(r => r.CurrencyId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // *** Temp seed data ***
             var currencies = new[]
             {
                 new Currency { Id = 1, Symbol = "EUR", Name = "Euro" },
