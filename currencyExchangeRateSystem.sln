@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRateConsoleApp", "exchangeRateConsoleApp\ExchangeRateConsoleApp.csproj", "{82F7BD73-177A-40BD-9612-B6B15FF52A50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRateConsoleApp", "exchangeRateConsoleApp\ExchangeRateConsoleApp.csproj", "{82F7BD73-177A-40BD-9612-B6B15FF52A50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRateSharedLib", "ExchangeRateSharedLib\ExchangeRateSharedLib.csproj", "{912938DA-0BFA-4AE1-9D1F-6DEE238DE201}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRateSharedLib", "ExchangeRateSharedLib\ExchangeRateSharedLib.csproj", "{912938DA-0BFA-4AE1-9D1F-6DEE238DE201}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyExchangeRateUpdater", "DailyExchangeRateUpdater\DailyExchangeRateUpdater.csproj", "{57A74503-2C0A-48F2-A0D4-042F5F5256F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyExchangeRateUpdater", "DailyExchangeRateUpdater\DailyExchangeRateUpdater.csproj", "{57A74503-2C0A-48F2-A0D4-042F5F5256F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRateDatabaseLib", "ExchangeRateDatabaseLib\ExchangeRateDatabaseLib.csproj", "{5F62BC7A-53EC-4228-8239-DB12CBE93D2D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeRateAPI", "ExchangeRateAPI\ExchangeRateAPI.csproj", "{4F4EB0E8-CFC0-480E-A7BA-F531B31847B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRateAPI", "ExchangeRateAPI\ExchangeRateAPI.csproj", "{4F4EB0E8-CFC0-480E-A7BA-F531B31847B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{57A74503-2C0A-48F2-A0D4-042F5F5256F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57A74503-2C0A-48F2-A0D4-042F5F5256F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57A74503-2C0A-48F2-A0D4-042F5F5256F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F62BC7A-53EC-4228-8239-DB12CBE93D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F62BC7A-53EC-4228-8239-DB12CBE93D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F62BC7A-53EC-4228-8239-DB12CBE93D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F62BC7A-53EC-4228-8239-DB12CBE93D2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F4EB0E8-CFC0-480E-A7BA-F531B31847B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F4EB0E8-CFC0-480E-A7BA-F531B31847B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F4EB0E8-CFC0-480E-A7BA-F531B31847B2}.Release|Any CPU.ActiveCfg = Release|Any CPU

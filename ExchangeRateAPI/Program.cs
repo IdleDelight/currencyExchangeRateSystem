@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using ExchangeRateAPI.Data;
+
 namespace ExchangeRateAPI
 {
     public class Program
@@ -7,8 +10,12 @@ namespace ExchangeRateAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
+
+            // Add DbContext service.
+            builder.Services.AddDbContext<ExchangeRateDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -24,7 +31,6 @@ namespace ExchangeRateAPI
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
