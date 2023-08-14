@@ -21,6 +21,9 @@ namespace ExchangeRateAPI.Data
                 .HasForeignKey(r => r.CurrencyId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Rate>().Property(r => r.Value)
+                .HasColumnType("decimal(20, 10)");
+
             // *** Temp seed data ***
             var currencies = new[]
             {
