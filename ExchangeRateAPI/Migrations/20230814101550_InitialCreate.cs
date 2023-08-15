@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace ExchangeRateAPI.Migrations
+namespace ExchangeRateDB.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

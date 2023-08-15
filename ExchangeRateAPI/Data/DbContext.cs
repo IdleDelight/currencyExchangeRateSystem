@@ -1,8 +1,8 @@
-﻿using ExchangeRateAPI.Model;
+﻿using ExchangeRateDB.Model;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace ExchangeRateAPI.Data
+namespace ExchangeRateDB.Data
 {
     public class ExchangeRateDbContext : DbContext
     {

@@ -1,4 +1,4 @@
-﻿namespace ExchangeRateAPI.Model
+﻿namespace ExchangeRateDB.Model
 {
     public class Currency
     {

@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRateConsoleApp", "e
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRateSharedLib", "ExchangeRateSharedLib\ExchangeRateSharedLib.csproj", "{912938DA-0BFA-4AE1-9D1F-6DEE238DE201}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyExchangeRateUpdater", "DailyExchangeRateUpdater\DailyExchangeRateUpdater.csproj", "{57A74503-2C0A-48F2-A0D4-042F5F5256F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRateUpdater", "DailyExchangeRateUpdater\ExchangeRateUpdater.csproj", "{57A74503-2C0A-48F2-A0D4-042F5F5256F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRateAPI", "ExchangeRateAPI\ExchangeRateAPI.csproj", "{4F4EB0E8-CFC0-480E-A7BA-F531B31847B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangeRateDB", "ExchangeRateAPI\ExchangeRateDB.csproj", "{4F4EB0E8-CFC0-480E-A7BA-F531B31847B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest-ExchangeRateSharedLib", "UnitTest-ExchangeRateConsoleApp\UnitTest-ExchangeRateSharedLib.csproj", "{27DF00F3-87E3-45FE-8F1E-C005FD86B49A}"
 EndProject

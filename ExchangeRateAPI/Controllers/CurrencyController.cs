@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ExchangeRateAPI.Data;
-using ExchangeRateAPI.Model;
+using ExchangeRateDB.Data;
+using ExchangeRateDB.Model;
 
 [ApiController]
 [Route("api/[controller]")]
