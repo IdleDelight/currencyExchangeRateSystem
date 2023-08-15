@@ -4,18 +4,29 @@ namespace ExchangeRateSharedLib
 {
     public class CurrencyService
     {
-        private const string AccessKey = Constants.FixerApiKey;
-        private const string BaseApi = Constants.FixerBaseUrl;
+        private readonly HttpClient _httpClient;
+        private readonly string AccessKey;
+        private readonly string BaseApi;
+        private readonly string BaseCurrency;
+        private readonly HashSet<string> ValidSymbols;
+
+        public CurrencyService( HttpClient httpClient, string apiKey, string baseUrl, string baseCurrency, string[] validSymbols )
+        {
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            AccessKey = apiKey ?? throw new ArgumentNullException(nameof(apiKey));
+            BaseApi = baseUrl ?? throw new ArgumentNullException(nameof(baseUrl));
+            BaseCurrency = baseCurrency ?? throw new ArgumentNullException(nameof(baseCurrency));
+            ValidSymbols = new HashSet<string>(validSymbols) ?? throw new ArgumentNullException(nameof(validSymbols));
+        }
 
         public bool IsValidCurrency( string currency )
         {
-            return !string.IsNullOrEmpty(currency) && Constants.FixerValidSymbols.Contains(currency);
+            return !string.IsNullOrEmpty(currency) && ValidSymbols.Contains(currency);
         }
 
         public JObject FetchExchangeRates( string date )
         {
-            using var client = new HttpClient();
-            return FetchExchangeRates(date, client);
+            return FetchExchangeRates(date, _httpClient);
         }
 
         public JObject FetchExchangeRates( string date, HttpClient httpClient )

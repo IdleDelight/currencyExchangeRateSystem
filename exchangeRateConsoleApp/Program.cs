@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 
 namespace ExchangeRateConsoleApp
@@ -7,11 +8,30 @@ namespace ExchangeRateConsoleApp
     {
         private static Dictionary<string, JObject> rateCache = new();
 
-        private static ExchangeRateSharedLib.CurrencyService currencyService = new ExchangeRateSharedLib.CurrencyService();
+        // Configuration instance to access app settings
+        private static IConfiguration configuration;
+
+        // Modify the CurrencyService initialization to use the configuration
+        private static ExchangeRateSharedLib.CurrencyService currencyService;
         private static ConsoleUtility consoleUtility = new ConsoleUtility();
 
         static void Main( string[] args )
         {
+            var builder = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json");
+
+            configuration = builder.Build();
+
+            var fixerSettings = configuration.GetSection("FixerSettings");
+            var apiKey = fixerSettings["ApiKey"];
+            var baseUrl = fixerSettings["BaseUrl"];
+            var baseCurrency = fixerSettings["BaseCurrency"];
+            var validSymbols = fixerSettings.GetSection("ValidSymbols").Get<string[]>();
+
+            var httpClient = new HttpClient();
+            currencyService = new ExchangeRateSharedLib.CurrencyService(httpClient, apiKey, baseUrl, baseCurrency, validSymbols);
+
             // Load latest rates on startup
             var latestRates = currencyService.FetchExchangeRates("latest");
             rateCache["latest"] = latestRates;
