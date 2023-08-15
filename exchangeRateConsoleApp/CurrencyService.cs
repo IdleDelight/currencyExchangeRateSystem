@@ -14,10 +14,14 @@ namespace ExchangeRateConsoleApp
 
         public JObject FetchExchangeRates( string date )
         {
-            using var httpClient = new HttpClient();
+            using var client = new HttpClient();
+            return FetchExchangeRates(date, client);
+        }
+
+        public JObject FetchExchangeRates( string date, HttpClient httpClient )
+        {
             var result = httpClient.GetStringAsync($"{BaseApi}{date}?access_key={AccessKey}").Result;
             var data = JObject.Parse(result);
-
             bool success = data["success"]?.ToObject<bool>() ?? false;
 
             if (!success) {
