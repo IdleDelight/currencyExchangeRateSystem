@@ -75,7 +75,7 @@ namespace UnitTest_ExchangeRateSharedLib
                 var service = new ExchangeRateSharedLib.CurrencyService(mockHttpClient, mockApiKey, mockBaseUrl, mockBaseCurrency, mockValidSymbols);
                 var result = service.ConvertCurrency("USD", "EUR", 12m, rates);
 
-                Assert.That(result, Is.EqualTo(10m)); // As 12 USD is 10 EUR based on provided rates.
+                Assert.That(result, Is.EqualTo(10m)); // 12 USD is 10 EUR at set rates.
             }
 
             [Test]

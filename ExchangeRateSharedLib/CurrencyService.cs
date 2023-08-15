@@ -52,11 +52,11 @@ namespace ExchangeRateSharedLib
                 throw new Exception($"Rate for currency {to} not found.");
             }
 
-            if (from == Constants.FixerBaseCurrency) {
+            if (from == BaseCurrency) {
                 return amount * toRate.Value<decimal>();
             }
 
-            if (to == Constants.FixerBaseCurrency) {
+            if (to == BaseCurrency) {
                 return amount / fromRate.Value<decimal>();
             }
 
