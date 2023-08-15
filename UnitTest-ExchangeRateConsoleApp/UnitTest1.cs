@@ -4,7 +4,7 @@ using Moq;
 using System.Net;
 using Newtonsoft.Json.Linq;
 
-namespace UnitTest_ExchangeRateConsoleApp
+namespace UnitTest_ExchangeRateSharedLib
 {
     public class Tests
     {
@@ -16,7 +16,7 @@ namespace UnitTest_ExchangeRateConsoleApp
         [Test]
         public void IsValidCurrency_ValidSymbol_ReturnsTrue()
         {
-            var service = new CurrencyService();
+            var service = new ExchangeRateSharedLib.CurrencyService();
             var result = service.IsValidCurrency("USD");
             Assert.IsTrue(result);
         }
@@ -24,7 +24,7 @@ namespace UnitTest_ExchangeRateConsoleApp
         [Test]
         public void IsValidCurrency_InvalidSymbol_ReturnsFalse()
         {
-            var service = new CurrencyService();
+            var service = new ExchangeRateSharedLib.CurrencyService();
             var result = service.IsValidCurrency("INVALID");
             Assert.IsFalse(result);
         }
@@ -43,7 +43,7 @@ namespace UnitTest_ExchangeRateConsoleApp
 
             var mockHttpClient = new HttpClient(mockMessageHandler.Object);
 
-            var service = new CurrencyService();
+            var service = new ExchangeRateSharedLib.CurrencyService();
             var result = service.FetchExchangeRates("2023-08-12", mockHttpClient);
 
             Assert.IsNotNull(result);
@@ -64,7 +64,7 @@ namespace UnitTest_ExchangeRateConsoleApp
 
             var mockHttpClient = new HttpClient(mockMessageHandler.Object);
 
-            var service = new CurrencyService();
+            var service = new ExchangeRateSharedLib.CurrencyService();
 
             Assert.Throws<Exception>(() => service.FetchExchangeRates("2023-08-12", mockHttpClient));
         }
@@ -74,7 +74,7 @@ namespace UnitTest_ExchangeRateConsoleApp
         {
             var rates = JObject.Parse("{\"USD\": 1.2, \"EUR\": 1}");
 
-            var service = new CurrencyService();
+            var service = new ExchangeRateSharedLib.CurrencyService();
             var result = service.ConvertCurrency("USD", "EUR", 12m, rates);
 
             Assert.That(result, Is.EqualTo(10m)); // As 12 USD is 10 EUR based on provided rates.
@@ -85,7 +85,7 @@ namespace UnitTest_ExchangeRateConsoleApp
         {
             var rates = JObject.Parse("{\"USD\": 1.2, \"EUR\": 1}");
 
-            var service = new CurrencyService();
+            var service = new ExchangeRateSharedLib.CurrencyService();
 
             Assert.Throws<Exception>(() => service.ConvertCurrency("INVALID", "EUR", 12m, rates));
         }

@@ -7,7 +7,7 @@ namespace ExchangeRateConsoleApp
     {
         private static Dictionary<string, JObject> rateCache = new();
 
-        private static CurrencyService currencyService = new CurrencyService();
+        private static ExchangeRateSharedLib.CurrencyService currencyService = new ExchangeRateSharedLib.CurrencyService();
         private static ConsoleUtility consoleUtility = new ConsoleUtility();
 
         static void Main( string[] args )

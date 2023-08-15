@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace ExchangeRateConsoleApp
+namespace ExchangeRateSharedLib
 {
     public class CurrencyService
     {

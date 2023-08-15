@@ -1,5 +1,6 @@
-﻿namespace ExchangeRateSharedLib.Utilities
+﻿namespace ExchangeRateSharedLib
 {
+
     public static class Constants
     {
         public const string FixerApiKey = "3aa40bf4f72be5c8ca14a09f1fe06459";
