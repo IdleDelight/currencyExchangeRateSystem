@@ -15,7 +15,8 @@ namespace ExchangeRateConsoleApp
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile("FixerSettings.json", optional: false);
 
             configuration = builder.Build();
 

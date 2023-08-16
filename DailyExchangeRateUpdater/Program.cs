@@ -8,7 +8,8 @@ namespace ExchangeRateUpdater
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile("FixerSettings.json", optional: false);
 
             var configuration = builder.Build();
             var fixerSettings = configuration.GetSection("FixerSettings");
