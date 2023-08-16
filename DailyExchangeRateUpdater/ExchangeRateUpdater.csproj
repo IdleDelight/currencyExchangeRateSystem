@@ -17,5 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExchangeRateSharedLib\ExchangeRateSharedLib.csproj" />
+	<ProjectReference Include="..\ExchangeRateAPI\ExchangeRateDB.csproj" />
   </ItemGroup>
 </Project>

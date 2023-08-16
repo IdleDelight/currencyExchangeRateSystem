@@ -1,6 +1,7 @@
 ﻿using ExchangeRateDB.Model;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ExchangeRateDB.Data
 {
@@ -29,6 +30,9 @@ namespace ExchangeRateDB.Data
             var currenciesJson = File.ReadAllText(currencySeedDataPath);
 
             var currencyData = JsonConvert.DeserializeObject<Dictionary<string, string>>(currenciesJson);
+            if (currencyData == null) {
+                throw new InvalidOperationException("Failed to deserialize the currency seed data.");
+            }
 
             var currenciesList = new List<Currency>();
             int idCounter = 1;
@@ -43,10 +47,29 @@ namespace ExchangeRateDB.Data
 
             modelBuilder.Entity<Currency>().HasData(currenciesList);
 
-            // Repeat similar steps for Rates if you have a separate JSON file for that
+            var rateSeedDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "SeedData", "RateSeedData.json");
+            var rateSeedData = File.ReadAllText(rateSeedDataPath);
+            var ratesJson = JObject.Parse(rateSeedData)["rates"] as JObject;
+            var ratesList = new List<Rate>();
+
+            if (ratesJson != null) {
+                foreach (var rate in ratesJson) {
+                    var currency = currenciesList.FirstOrDefault(c => c.Symbol == rate.Key);
+                    if (currency != null) {
+                        ratesList.Add(new Rate
+                        {
+                            Value = rate.Value.Value<decimal>(),
+                            Date = DateTime.UtcNow,
+                            CurrencyId = currency.Id
+                        });
+                    }
+                }
+            }
+
+            modelBuilder.Entity<Rate>().HasData(ratesList);
 
             modelBuilder.Entity<UpdateLog>().HasData(
-                new UpdateLog { Id = 1, DbUpdateDate = DateTime.Now.ToString(), ApiCallSuccess = "NA", Message = "DB Created" }
+                new UpdateLog { Id = 1, DbUpdateDate = DateTime.Now, ApiCallSuccess = false, Message = "DB Created" }
             );
         }
     }

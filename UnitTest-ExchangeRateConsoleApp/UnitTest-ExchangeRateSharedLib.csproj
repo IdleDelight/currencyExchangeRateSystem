@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\exchangeRateConsoleApp\ExchangeRateConsoleApp.csproj" />
+    <ProjectReference Include="..\ExchangeRateSharedLib\ExchangeRateSharedLib.csproj" />
   </ItemGroup>
 
 </Project>

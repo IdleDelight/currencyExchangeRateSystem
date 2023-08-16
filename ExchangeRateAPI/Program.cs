@@ -22,6 +22,19 @@ namespace ExchangeRateDB
 
             var app = builder.Build();
 
+            // Ensure the database is created
+            using var scope = app.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            var dbContext = services.GetRequiredService<ExchangeRateDbContext>();
+
+            try {
+                dbContext.Database.EnsureCreated();
+            }
+            catch (Exception ex) {
+                // Log or handle the exception as appropriate
+                Console.WriteLine($"An error occurred while ensuring the database is created: {ex.Message}");
+            }
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment()) {
                 app.UseSwagger();
