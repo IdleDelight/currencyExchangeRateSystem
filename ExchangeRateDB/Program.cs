@@ -10,7 +10,8 @@ namespace ExchangeRateDB
             var builder = WebApplication.CreateBuilder(args);
 
             // The line below adds the FixerSettings.json from the output directory
-            builder.Configuration.AddJsonFile("FixerSettings.json", optional: false);
+            var absolutePath = @"D:\GitHub\currencyExchangeRateSystem\currencyExchangeRateSystem\ExchangeRateSharedLib\FixerSettings.json";
+            builder.Configuration.AddJsonFile(absolutePath, optional: false);
 
             // Add services to the container.
             builder.Services.AddControllers();

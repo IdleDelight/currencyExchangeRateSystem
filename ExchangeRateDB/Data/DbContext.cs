@@ -35,11 +35,11 @@ namespace ExchangeRateDB.Data
             }
 
             var currenciesList = new List<Currency>();
-            int idCounter = 1;
+            int currancyIdCounter = 1;
             foreach (var entry in currencyData) {
                 currenciesList.Add(new Currency
                 {
-                    Id = idCounter++,
+                    Id = currancyIdCounter++,
                     Symbol = entry.Key,
                     Name = entry.Value
                 });
@@ -50,14 +50,16 @@ namespace ExchangeRateDB.Data
             var rateSeedDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "SeedData", "RateSeedData.json");
             var rateSeedData = File.ReadAllText(rateSeedDataPath);
             var ratesJson = JObject.Parse(rateSeedData)["rates"] as JObject;
-            var ratesList = new List<Rate>();
 
+            var ratesList = new List<Rate>();
+            int rateIdCount = 1;
             if (ratesJson != null) {
                 foreach (var rate in ratesJson) {
                     var currency = currenciesList.FirstOrDefault(c => c.Symbol == rate.Key);
                     if (currency != null) {
                         ratesList.Add(new Rate
                         {
+                            Id = rateIdCount++,
                             Value = rate.Value.Value<decimal>(),
                             Date = DateTime.UtcNow,
                             CurrencyId = currency.Id
