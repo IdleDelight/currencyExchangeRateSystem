@@ -6,6 +6,6 @@
         public decimal Value { get; set; }
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public int CurrencyId { get; set; }
-        public Currency Currency { get; set; } = new Currency();
+        public Currency Currency { get; set; }
     }
 }

@@ -1,4 +1,6 @@
+using ExchangeRateDB.Data;
 using ExchangeRateSharedLib;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExchangeRateUpdater
 {
@@ -6,10 +8,14 @@ namespace ExchangeRateUpdater
     {
         public static void Main( string[] args )
         {
+            // Relative path from ExchangeRateUpdater to FixerSettings.json in ExchangeRateSharedLib
+            var relativePathToSettings = @"..\ExchangeRateSharedLib\FixerSettings.json";
+            var fullPath = Path.GetFullPath(relativePathToSettings);
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile("FixerSettings.json", optional: false);
+                .AddJsonFile(fullPath, optional: false);
 
             var configuration = builder.Build();
             var fixerSettings = configuration.GetSection("FixerSettings");
@@ -30,6 +36,9 @@ namespace ExchangeRateUpdater
 
                         return new CurrencyService(httpClient, apiKey, baseUrl, baseCurrency, validSymbols);
                     });
+                    services.AddDbContext<ExchangeRateDbContext>(options =>
+                        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
                     services.AddHostedService<Worker>();
                 })
                 .Build();

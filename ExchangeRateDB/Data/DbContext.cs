@@ -60,7 +60,7 @@ namespace ExchangeRateDB.Data
                         ratesList.Add(new Rate
                         {
                             Id = rateIdCount++,
-                            Value = rate.Value.Value<decimal>(),
+                            Value = rate.Value?.Type == JTokenType.Float ? rate.Value.Value<decimal>() : 0M,
                             Date = DateTime.UtcNow,
                             CurrencyId = currency.Id
                         });

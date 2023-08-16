@@ -39,7 +39,11 @@ namespace ExchangeRateSharedLib
                 throw new Exception("Failed to fetch exchange rates.");
             }
 
-            return data["rates"] as JObject ?? new JObject();
+            var ratesData = data["rates"] as JObject ?? new JObject();
+
+            ratesData["date"] = data["date"];
+
+            return ratesData;
         }
 
         public decimal ConvertCurrency( string from, string to, decimal amount, JObject rates )
