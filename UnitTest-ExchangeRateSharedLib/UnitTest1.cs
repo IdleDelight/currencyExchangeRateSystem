@@ -54,7 +54,10 @@ namespace UnitTest_ExchangeRateSharedLib
                 var result = service.FetchExchangeRates("2023-08-12").Result;
 
                 Assert.IsNotNull(result);
-                Assert.IsTrue(result.ContainsKey("USD"));
+
+                var rates = result["rates"] as JObject;
+                Assert.IsNotNull(rates);
+                Assert.IsTrue(rates.ContainsKey("USD"));
             }
 
             [Test]
@@ -72,13 +75,14 @@ namespace UnitTest_ExchangeRateSharedLib
 
                 var service = new CurrencyService(mockHttpClient, mockApiKey, mockBaseUrl, mockBaseCurrency, mockValidSymbols);
 
+                await Task.Yield(); // Add this line to suppress the warning
                 Assert.ThrowsAsync<Exception>(async () => await service.FetchExchangeRates("2023-08-12"));
             }
 
             [Test]
             public void ConvertCurrency_ValidConversion_ReturnsConvertedAmount()
             {
-                var rates = JObject.Parse("{\"USD\": 1.2, \"EUR\": 1}");
+                var rates = JObject.Parse("{\"success\": true, \"rates\": {\"USD\": 1.2, \"EUR\": 1}}");
 
                 var service = new CurrencyService(mockHttpClient, mockApiKey, mockBaseUrl, mockBaseCurrency, mockValidSymbols);
                 var result = service.ConvertCurrency("USD", "EUR", 12m, rates);
