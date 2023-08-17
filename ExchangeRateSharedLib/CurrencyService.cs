@@ -44,28 +44,6 @@ namespace ExchangeRateSharedLib
             return data;
         }
 
-        //public decimal ConvertCurrency( string from, string to, decimal amount, JObject rates )
-        //{
-        //    if (!rates.TryGetValue(from, out JToken? fromRate) || fromRate == null) {
-        //        throw new Exception($"Rate for currency {from} not found.");
-        //    }
-
-        //    if (!rates.TryGetValue(to, out JToken? toRate) || toRate == null) {
-        //        throw new Exception($"Rate for currency {to} not found.");
-        //    }
-
-        //    if (from == BaseCurrency) {
-        //        return amount * toRate.Value<decimal>();
-        //    }
-
-        //    if (to == BaseCurrency) {
-        //        return amount / fromRate.Value<decimal>();
-        //    }
-
-        //    decimal toEuroRate = 1 / fromRate.Value<decimal>();
-        //    return amount * toEuroRate * toRate.Value<decimal>();
-        //}
-
         public decimal ConvertCurrency( string from, string to, decimal amount, JObject data )
         {
             if (!data["success"].Value<bool>()) {
