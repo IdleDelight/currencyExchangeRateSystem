@@ -39,6 +39,8 @@ namespace ExchangeRateUpdater
                     services.AddDbContext<ExchangeRateDbContext>(options =>
                         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
+                    services.AddScoped<RatesDataProcessor>();
+
                     services.AddHostedService<Worker>();
                 })
                 .Build();

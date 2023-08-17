@@ -33,15 +33,17 @@ namespace ExchangeRateSharedLib
         {
             var result = await httpClient.GetStringAsync($"{BaseApi}{date}?access_key={AccessKey}");
             var data = JObject.Parse(result);
+            Console.WriteLine($"Fetched Exchange Rates Data: {data}");
+
             bool success = data["success"]?.ToObject<bool>() ?? false;
 
             if (!success) {
                 throw new Exception("Failed to fetch exchange rates.");
             }
 
-            var ratesData = data["rates"] as JObject ?? new JObject();
-            ratesData["date"] = data["date"];
-            return ratesData;
+            //var ratesData = data["rates"] as JObject ?? new JObject();
+            //ratesData["date"] = data["date"];
+            return data;
         }
 
         public decimal ConvertCurrency( string from, string to, decimal amount, JObject rates )
