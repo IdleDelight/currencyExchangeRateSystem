@@ -41,13 +41,39 @@ namespace ExchangeRateSharedLib
                 throw new Exception("Failed to fetch exchange rates.");
             }
 
-            //var ratesData = data["rates"] as JObject ?? new JObject();
-            //ratesData["date"] = data["date"];
             return data;
         }
 
-        public decimal ConvertCurrency( string from, string to, decimal amount, JObject rates )
+        //public decimal ConvertCurrency( string from, string to, decimal amount, JObject rates )
+        //{
+        //    if (!rates.TryGetValue(from, out JToken? fromRate) || fromRate == null) {
+        //        throw new Exception($"Rate for currency {from} not found.");
+        //    }
+
+        //    if (!rates.TryGetValue(to, out JToken? toRate) || toRate == null) {
+        //        throw new Exception($"Rate for currency {to} not found.");
+        //    }
+
+        //    if (from == BaseCurrency) {
+        //        return amount * toRate.Value<decimal>();
+        //    }
+
+        //    if (to == BaseCurrency) {
+        //        return amount / fromRate.Value<decimal>();
+        //    }
+
+        //    decimal toEuroRate = 1 / fromRate.Value<decimal>();
+        //    return amount * toEuroRate * toRate.Value<decimal>();
+        //}
+
+        public decimal ConvertCurrency( string from, string to, decimal amount, JObject data )
         {
+            if (!data["success"].Value<bool>()) {
+                throw new Exception("Data fetch was not successful.");
+            }
+
+            JObject rates = data["rates"].Value<JObject>();
+
             if (!rates.TryGetValue(from, out JToken? fromRate) || fromRate == null) {
                 throw new Exception($"Rate for currency {from} not found.");
             }
@@ -56,6 +82,7 @@ namespace ExchangeRateSharedLib
                 throw new Exception($"Rate for currency {to} not found.");
             }
 
+            // Calculate the converted amount.
             if (from == BaseCurrency) {
                 return amount * toRate.Value<decimal>();
             }
@@ -64,8 +91,8 @@ namespace ExchangeRateSharedLib
                 return amount / fromRate.Value<decimal>();
             }
 
-            decimal toEuroRate = 1 / fromRate.Value<decimal>();
-            return amount * toEuroRate * toRate.Value<decimal>();
+            decimal toBaseCurrencyRate = 1 / fromRate.Value<decimal>();
+            return amount * toBaseCurrencyRate * toRate.Value<decimal>();
         }
     }
 }

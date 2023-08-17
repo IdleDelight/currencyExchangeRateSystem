@@ -102,6 +102,7 @@ namespace ExchangeRateConsoleApp
                         }
 
                         Console.Clear();
+
                         consoleUtility.PrintHeader("The Currency Converter");
                         consoleUtility.PrintSubHeader($"Using {dateInput} rates for {fromCurrency} and {toCurrency}");
 
