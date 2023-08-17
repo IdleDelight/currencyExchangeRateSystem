@@ -67,6 +67,9 @@ namespace ExchangeRateDB.Data
             var rateSeedData = File.ReadAllText(rateSeedDataPath);
             var ratesJson = JObject.Parse(rateSeedData)["rates"] as JObject;
             var rateDate = JObject.Parse(rateSeedData)["date"]?.Value<string>();
+            if (string.IsNullOrEmpty(rateDate)) {
+                throw new InvalidOperationException("Rate date is missing in the seed data.");
+            }
             var parsedDate = DateTime.Parse(rateDate);
 
             var ratesList = new List<Rate>();

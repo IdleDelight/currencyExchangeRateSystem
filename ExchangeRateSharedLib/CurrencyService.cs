@@ -46,11 +46,15 @@ namespace ExchangeRateSharedLib
 
         public decimal ConvertCurrency( string from, string to, decimal amount, JObject data )
         {
-            if (!data["success"].Value<bool>()) {
+            bool? success = data["success"]?.Value<bool>();
+            if (!success.HasValue || !success.Value) {
                 throw new Exception("Data fetch was not successful.");
             }
 
-            JObject rates = data["rates"].Value<JObject>();
+            JObject rates = data["rates"]?.Value<JObject>()!;
+            if (rates == null) {
+                throw new Exception("Rates data was not found.");
+            }
 
             if (!rates.TryGetValue(from, out JToken? fromRate) || fromRate == null) {
                 throw new Exception($"Rate for currency {from} not found.");

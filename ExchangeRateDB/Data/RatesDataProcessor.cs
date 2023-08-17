@@ -20,6 +20,10 @@ namespace ExchangeRateDB.Data
         public bool ProcessRatesData( JObject apiData, List<Currency> currenciesList )
         {
             var ratesJson = apiData["rates"] as JObject;
+            if (ratesJson == null) {
+                Console.WriteLine("Warning: Rates object not found or not in expected format.");
+                return false;
+            }
             Console.WriteLine($"Fetched Rates JSON: {ratesJson}");
 
             var rateDate = apiData["date"]?.Value<string>();
@@ -75,10 +79,6 @@ namespace ExchangeRateDB.Data
             else {
                 // Insert new rates
                 var ratesList = new List<Rate>();
-                if (ratesJson == null) {
-                    Console.WriteLine("Warning: Rates object not found or not in expected format.");
-                    return false;
-                }
 
                 foreach (var rate in ratesJson) {
                     var currency = currenciesList.FirstOrDefault(c => c.Symbol == rate.Key);
