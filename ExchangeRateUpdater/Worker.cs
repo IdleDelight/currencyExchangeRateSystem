@@ -37,8 +37,8 @@ namespace ExchangeRateUpdater
 
                     Console.WriteLine(rates); //<<<< I ADDED THIS
 
-                    // Use the RateDataParser to insert or update rates
-                    RateDataParser.UpdateRates(rates, dbContext);
+                    //// Use the RateDataParser to insert or update rates
+                    //RateDataParser.UpdateRates(rates, dbContext);
 
                     // Log the update to the UpdateLog table
                     var updateLog = new UpdateLog
