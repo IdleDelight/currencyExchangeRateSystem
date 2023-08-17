@@ -11,7 +11,7 @@ namespace ExchangeRateConsoleApp
         private static ExchangeRateSharedLib.CurrencyService? currencyService;
         private static ConsoleUtility consoleUtility = new ConsoleUtility();
 
-        static void Main( string[] args )
+        static async Task Main( string[] args )
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -38,7 +38,7 @@ namespace ExchangeRateConsoleApp
                     currencyService = new ExchangeRateSharedLib.CurrencyService(httpClient, apiKey, baseUrl, baseCurrency, validSymbols);
 
                     // Load latest rates on startup
-                    var latestRates = currencyService.FetchExchangeRates("latest");
+                    var latestRates = await currencyService.FetchExchangeRates("latest");
                     rateCache["latest"] = latestRates;
 
                     while (true) {
@@ -97,7 +97,7 @@ namespace ExchangeRateConsoleApp
 
 
                         if (!rateCache.ContainsKey(dateInput)) {
-                            var rates = currencyService.FetchExchangeRates(dateInput);
+                            var rates = await currencyService.FetchExchangeRates(dateInput);
                             rateCache[dateInput] = rates;
                         }
 

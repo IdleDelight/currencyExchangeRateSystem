@@ -24,14 +24,14 @@ namespace ExchangeRateSharedLib
             return !string.IsNullOrEmpty(currency) && ValidSymbols.Contains(currency);
         }
 
-        public JObject FetchExchangeRates( string date )
+        public async Task<JObject> FetchExchangeRates( string date )
         {
-            return FetchExchangeRates(date, _httpClient);
+            return await FetchExchangeRates(date, _httpClient);
         }
 
-        public JObject FetchExchangeRates( string date, HttpClient httpClient )
+        public async Task<JObject> FetchExchangeRates( string date, HttpClient httpClient )
         {
-            var result = httpClient.GetStringAsync($"{BaseApi}{date}?access_key={AccessKey}").Result;
+            var result = await httpClient.GetStringAsync($"{BaseApi}{date}?access_key={AccessKey}");
             var data = JObject.Parse(result);
             bool success = data["success"]?.ToObject<bool>() ?? false;
 
@@ -40,9 +40,7 @@ namespace ExchangeRateSharedLib
             }
 
             var ratesData = data["rates"] as JObject ?? new JObject();
-
             ratesData["date"] = data["date"];
-
             return ratesData;
         }
 

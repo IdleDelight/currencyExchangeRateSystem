@@ -29,7 +29,7 @@ namespace ExchangeRateUpdater
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
                 try {
-                    JObject rates = _currencyService.FetchExchangeRates("2023-08-15");
+                    JObject rates = await _currencyService.FetchExchangeRates("2023-08-15");
 
                     // Use the service scope factory to create a scope and get the DB context
                     using var scope = _scopeFactory.CreateScope();

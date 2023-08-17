@@ -51,14 +51,14 @@ namespace UnitTest_ExchangeRateSharedLib
 
                 var service = new CurrencyService(mockHttpClient, mockApiKey, mockBaseUrl, mockBaseCurrency, mockValidSymbols);
 
-                var result = service.FetchExchangeRates("2023-08-12");
+                var result = service.FetchExchangeRates("2023-08-12").Result;
 
                 Assert.IsNotNull(result);
                 Assert.IsTrue(result.ContainsKey("USD"));
             }
 
             [Test]
-            public void FetchExchangeRates_ApiReturnsError_ThrowsException()
+            public async Task FetchExchangeRates_ApiReturnsError_ThrowsException()
             {
                 var mockMessageHandler = new Mock<HttpMessageHandler>();
                 mockHttpClient = new HttpClient(mockMessageHandler.Object);
@@ -72,7 +72,7 @@ namespace UnitTest_ExchangeRateSharedLib
 
                 var service = new CurrencyService(mockHttpClient, mockApiKey, mockBaseUrl, mockBaseCurrency, mockValidSymbols);
 
-                Assert.Throws<Exception>(() => service.FetchExchangeRates("2023-08-12"));
+                Assert.ThrowsAsync<Exception>(async () => await service.FetchExchangeRates("2023-08-12"));
             }
 
             [Test]
