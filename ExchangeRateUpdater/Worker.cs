@@ -12,7 +12,7 @@ namespace ExchangeRateUpdater
         private readonly ILogger<Worker> _logger;
         private readonly string _specificDate;
 
-        public Worker( ILogger<Worker> logger, CurrencyService currencyService, IServiceScopeFactory scopeFactory, string specificDate = "2023-08-09" )
+        public Worker( ILogger<Worker> logger, CurrencyService currencyService, IServiceScopeFactory scopeFactory, string specificDate = "latest" )
         {
             _logger = logger;
             _currencyService = currencyService;
