@@ -15,8 +15,8 @@ namespace ExchangeRateConsoleApp
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile("FixerSettings.json", optional: false);
+                .AddJsonFile("FixerSettings.json", optional: false); 
+                //FixerSettings.json set to 'Copy to Output Directory' in ExchangeRateSharedLib
 
             configuration = builder.Build();
 
